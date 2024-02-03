@@ -154,8 +154,8 @@ export const updateWeather = function (lat, lon) {
             </ul>
         `;
 
-        fetchData(url.reverseGeo(lat, lon), function ([{ name, country }]) {
-            card.querySelector("[data-location]").innerHTML = `${name}, ${country}`
+        fetchData(url.reverseGeo(lat, lon), function ([{ name, state, country }]) {
+            card.querySelector("[data-location]").innerHTML = `${name},${state}, ${country}`
         });
         currentWeatherSection.appendChild(card);
 
