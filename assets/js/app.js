@@ -414,6 +414,16 @@ export const updateWeather = function (lat, lon) {
 
             forecastSection.querySelector("[data-forecast-list]").appendChild(li);
 
+            const errorContentSection = document.querySelector("[data-error-content]");
+            const goHomeButton = errorContentSection.querySelector(".btn-primary");
+            
+            goHomeButton.addEventListener("click", () => {
+                // Replace '#' with the actual URL you want to navigate to when the "Go Home" button is clicked
+                window.location.href = '/';
+            });
+            
+            // You can add more functionality or modify the behavior based on your requirements
+            
             }
 
             loading.style.display = "none";
