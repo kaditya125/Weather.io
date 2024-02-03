@@ -4,6 +4,8 @@
 import { fetchData, url } from "./api.js";
 import * as module from "./module.js";
 
+
+
 /**
  * 
  * @param {Nodelist} elements 
@@ -96,20 +98,23 @@ export const updateWeather = function (lat, lon) {
 
     const currentWeatherSection = document.querySelector("[data-current-weather]");
     const highlightSection = document.querySelector("[data-highlights]");
-
+    const socialMediaSection = document.querySelector("[data-social-sharing]");
     const hourlySection = document.querySelector("[data-hourly-forecast]");
     const forecastSection = document.querySelector("[data-5-day-forecast]");
 
     currentWeatherSection.innerHTML = "";
     highlightSection.innerHTML = "";
+    socialMediaSection.innerHTML= "";
     hourlySection.innerHTML = "";
     forecastSection.innerHTML = "";
+
 
     if (window.location.hash === "#/current-location") {
         currentLocationBtn.setAttribute("disabled", "");
     } else {
         currentLocationBtn.removeAttribute("disabled");
     }
+    
 
     fetchData(url.currentWeather(lat, lon), function (currentWeather) {
         const {
@@ -160,6 +165,7 @@ export const updateWeather = function (lat, lon) {
                 components: { no2, o3, so2, pm2_5 }
             }] = airPollution.list;
 
+            
             const card = document.createElement("div");
             card.classList.add("card", "card-lg");
 
@@ -215,6 +221,9 @@ export const updateWeather = function (lat, lon) {
                         </div>
                     </div>
 
+                  
+                    
+
                     <div class="card card-sm highlight-card">
                         <h3 class="title-3">Humidity</h3>
                         <div class="wrapper">
@@ -243,17 +252,66 @@ export const updateWeather = function (lat, lon) {
                             <p class="title-1">${parseInt(feels_like)}&deg;<sup>c</sup></p>
                         </div>
                     </div>
+
+                    
                 </div>
             `;
 
             highlightSection.appendChild(card);
         });
 
+        const socialcard = document.createElement("div");
+        socialcard.classList.add("social-icons");
+
+        socialcard.innerHTML=
+        
+        ` <!-- Add this to your HTML file -->
+        <div class="social-container">
+            <h2 class="title-2" id="highlights-label">Share at -</h2>
+            <div class="social-icons">
+                <a href="#" id="facebook-share"><img src="assets/images/facebook-app-symbol.png" alt="facebook"></a>
+                <a href="#" id="whatApp-share"><img src="assets/images/whatsapp.png" alt="whatApp"></a>
+                <a href="#" id="Insta-share"><img src="assets/images/instagram.png" alt="instagram"></a>
+                <a href="#" id="twitter-share"><img src="assets/images/twitter.png" alt="twitter"></a>
+                <!-- Add more social media icons as needed -->
+            </div>
+        </div>
+        
+        `;
+
+        socialMediaSection.appendChild(socialcard);
+
+        const shareOnSocialMedia = (platform) => {
+            // Replace 'YourShareText' and 'YourTwitterHandle' with your actual text and Twitter handle
+            const shareText = 'Check out the current weather on Weather IO!';
+            const shareURL = 'https://weather-io-xi.vercel.app/#/current-location';
+        
+            // Define sharing URLs for different platforms
+            const shareURLs = {
+                facebook: `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareURL)}`,
+                whatsapp: `whatsapp://send?text=${encodeURIComponent(shareText)}%20-%20${encodeURIComponent(shareURL)}`,
+                instagram: `https://www.instagram.com/share?url=${encodeURIComponent(shareURL)}&title=${encodeURIComponent(shareText)}`,
+                twitter: `https://twitter.com/intent/tweet?url=${encodeURIComponent(shareURL)}&text=${encodeURIComponent(shareText)}&via=YourTwitterHandle`,
+                // Add more platforms as needed
+            };
+        
+            // Open a new window to share on the specified platform
+            window.open(shareURLs[platform], '_blank');
+        };
+        
+        // Add click event listeners to each social media icon
+        document.getElementById('facebook-share').addEventListener('click', () => shareOnSocialMedia('facebook'));
+        document.getElementById('whatApp-share').addEventListener('click', () => shareOnSocialMedia('whatsapp'));
+        document.getElementById('Insta-share').addEventListener('click', () => shareOnSocialMedia('instagram'));
+        document.getElementById('twitter-share').addEventListener('click', () => shareOnSocialMedia('twitter'));
+
         fetchData(url.forecast(lat, lon), function (forecast){
             const {
                list: forecastList,
                city: { timezone }
             } = forecast
+
+            
 
             hourlySection.innerHTML = `
             <h2 class="title-2">Today at</h2>

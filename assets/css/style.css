@@ -734,6 +734,15 @@ article.container::before {
   flex-wrap: wrap;
   gap: 8px 16px;
 }
+.real-time-clock {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+}
+
 /*-----------------------------------*\
   #FORECAST
 \*-----------------------------------*/
@@ -1136,4 +1145,38 @@ article.container {
   .highlight-list{
     grid-template-columns: repeat(4, 1fr);
   }
+}
+/* Add these styles to your CSS file */
+
+.social-container {
+  background-color: rgb(60, 59, 59);/* Light gray background color */
+  padding: 15px;
+  margin: 20px 0; /* Adjust margin as needed */
+  border-radius: 10px; /* Optional: Add rounded corners */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Optional: Add a subtle box shadow */
+  width: 100%; /* Make the container full width */
+  box-sizing: border-box; /* Include padding and border in the total width */
+}
+
+.social-icons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.social-icons a {
+  display: inline-block;
+  margin: 0 20px; /* Adjust margin between icons as needed */
+}
+
+.social-icons img {
+  width: 40px; /* Adjust the width of the icons */
+  height: 40px; /* Adjust the height of the icons */
+  background-color: transparent; /* Set the background color */
+
+  transition: transform 0.3s ease-in-out; /* Add a smooth hover effect */
+}
+
+.social-icons img:hover {
+  transform: scale(1.2); /* Increase the size on hover */
 }
