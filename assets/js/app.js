@@ -304,7 +304,7 @@ export const updateWeather = function (lat, lon) {
                 <p class="body-3">${module.getHours(dateTimeUnix, timezone)}</p>
                 <img src="./assets/images/weather_icons/direction.png" width="48" height="48" loading="lazy"  alt="direction" class="weather-icon" style= "transform: rotate(${windDirection -180}deg)" title="">
 
-                <p class="body-3">${module.mps_to_kmh(windSpeed)}km/h;</p>
+                <p class="body-3">${module.mps_to_kmh(windSpeed).toPrecision(3)}km/h;</p>
 
                 </div>
 
