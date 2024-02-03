@@ -19,6 +19,24 @@ export const fetchData = function (URL, callback) {
     .then((data) => callback(data));
    
 };
+/**
+ * Fetch local time data from WorldTimeAPI based on timezone
+ * @param {number} timezone
+ * @param {Function} callback
+ */
+export const fetchLocalTime = function (timezone, callback) {
+  const worldTimeAPIURL = `http://worldtimeapi.org/api/timezone/Etc/GMT${timezone >= 0 ? `+${timezone}` : timezone}`;
+  
+  fetch(worldTimeAPIURL)
+      .then((res) => {
+          if (!res.ok) {
+              throw new Error(`HTTP error! Status: ${res.status}`);
+          }
+          return res.json();
+      })
+      .then((data) => callback(data))
+      .catch((error) => console.error('Error fetching local time:', error));
+};
 
 export const url = {
   currentWeather(lat, lon) {

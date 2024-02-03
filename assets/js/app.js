@@ -2,6 +2,7 @@
 'use strict';
 
 import { fetchData, url } from "./api.js";
+import { fetchLocalTime} from "./api.js";
 import * as module from "./module.js";
 
 
@@ -88,6 +89,21 @@ const errorContent = document.querySelector("[data-error-content]");
  * @param {number} lat latitude
  * @param {number} lon longitude
  */
+
+// const updateLocalTime = function (lat, lon, timezone) {
+//     // Fetch local time using WorldTimeAPI
+//     fetchLocalTime(timezone, function (localTimeData) {
+//       const localTime = new Date(localTimeData.utc_datetime);
+//       console.log('Local time:', localTime);
+  
+//       // You can now use the localTime in your project as needed
+//       // For example, you might want to display it in your UI
+//       const localTimeElement = document.querySelector("[data-local-time]");
+//       if (localTimeElement) {
+//         localTimeElement.textContent = `Local Time: ${localTime.toLocaleString()}`;
+//       }
+//     });
+//   };
 export const updateWeather = function (lat, lon) {
 
     loading.style.display = "grid";
@@ -130,7 +146,7 @@ export const updateWeather = function (lat, lon) {
 
         const card = document.createElement("div");
         card.classList.add("card", "card-lg", "current-weather-card");
-
+        
         card.innerHTML = `
             <h2 class="title-2 card-title">
                 Now
@@ -139,7 +155,7 @@ export const updateWeather = function (lat, lon) {
                 <p class="heading">${parseInt(temp)}&deg;<sup>c</sup></p>
                 <img src="./assets/images/weather_icons/${icon}.png" width="64" height="64" alt="${description}" class="weather-icon">
             </div>
-
+        
             <p class="body-3">${description}</p>
             <div class="line"></div>
             <ul class="meta-list">
@@ -150,14 +166,31 @@ export const updateWeather = function (lat, lon) {
                 <li class="meta-item">
                     <span class="m-icon">Location_on</span>
                     <p class="title-3 meta-text" data-location></p>
+                    <p data-local-time></p>
                 </li>
             </ul>
         `;
-
-        fetchData(url.reverseGeo(lat, lon), function ([{ name, state, country }]) {
-            card.querySelector("[data-location]").innerHTML = `${name},${state}, ${country}`
+        
+        // Fetch reverse geolocation information
+        fetchData(url.reverseGeo(lat, lon), function ([{ name, state, country, lat, lon, timezone }]) {
+            // Update location information
+            card.querySelector("[data-location]").innerHTML = `${name}, ${state}, ${country} <br> coordinates: ${lat.toPrecision(4)}, ${lon.toPrecision(4)}`;
+        
+            fetchLocalTime(timezone, function (localTimeData) {
+                const localTimeElement = card.querySelector("[data-local-time]");
+        
+                // Update the local time in the card
+                if (localTimeElement) {
+                    const localTime = new Date(localTimeData.utc_datetime);
+                    const options = { timeZone: localTimeData.timezone };
+                    localTimeElement.textContent = `${localTime.toLocaleString('en-US', options)}`;
+                }
+            });
         });
+        
+        
         currentWeatherSection.appendChild(card);
+        
 
         fetchData(url.airPollution(lat, lon), function (airPollution) {
             const [{
@@ -268,12 +301,14 @@ export const updateWeather = function (lat, lon) {
         ` <!-- Add this to your HTML file -->
         <div class="social-container">
             <h2 class="title-2" id="highlights-label">Share at -</h2>
+            <div class="card card-sm">
             <div class="social-icons">
                 <a href="#" id="facebook-share"><img src="assets/images/facebook-app-symbol.png" alt="facebook"></a>
                 <a href="#" id="whatApp-share"><img src="assets/images/whatsapp.png" alt="whatApp"></a>
                 <a href="#" id="Insta-share"><img src="assets/images/instagram.png" alt="instagram"></a>
                 <a href="#" id="twitter-share"><img src="assets/images/twitter.png" alt="twitter"></a>
                 <!-- Add more social media icons as needed -->
+            </div>
             </div>
         </div>
         
