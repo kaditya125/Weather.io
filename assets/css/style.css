@@ -1180,3 +1180,49 @@ article.container {
 .social-icons img:hover {
   transform: scale(1.2); /* Increase the size on hover */
 }
+/* Add these styles to your CSS file */
+
+/* ... Existing styles ... */
+
+/* Social container styles */
+.social-container {
+  background-color: rgb(60, 59, 59);
+  padding: 15px;
+  margin: 20px 0;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  box-sizing: border-box;
+  transition: background-color 0.3s ease; /* Add transition for background color */
+}
+
+/* Social icons styles */
+.social-icons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.social-icons a {
+  display: inline-block;
+  margin: 0 20px;
+  transition: transform 0.3s ease, opacity 0.3s ease; /* Add transition for transform and opacity */
+}
+
+.social-icons img {
+  width: 40px;
+  height: 40px;
+  background-color: transparent;
+  transition: transform 0.3s ease-in-out; /* Add a smooth hover effect */
+}
+
+/* Social icons hover effect */
+.social-icons a:hover {
+  transform: translateY(-5px); /* Adjust the vertical translation on hover */
+  opacity: 0.8; /* Adjust the opacity on hover */
+}
+
+.social-icons img:hover {
+  transform: scale(1.2);
+}
+
