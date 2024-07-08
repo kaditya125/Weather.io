@@ -14,9 +14,12 @@ Insert GIF or link to demo here.
 
 ## Features
 
-- Feature 1
-- Feature 2
-- Feature 3
+- Search for any location to get weather information.
+- Retrieve real-time weather updates for searched locations.
+- View detailed weather information including temperature, humidity, wind speed, and weather conditions.
+- Responsive design for optimal viewing on different devices.
+- Modular code structure for easy maintenance and scalability.
+- User-friendly interface for seamless user experience.
 
 ## Screenshots
 
