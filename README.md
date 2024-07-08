@@ -1,15 +1,16 @@
+# Weather-IO
 
-# Project Title
+## Project Description
 
-A brief description of what this project does and who it's for
+Weather-IO is a location search web application developed using modern JavaScript and modular coding practices. It provides users with an efficient interface to explore and retrieve location-based information, including real-time weather updates.
 
 ## Tech Stack
 
-**Client:** HTML, CSS, JavaScript, API
+- **Client**: HTML, CSS, JavaScript, API
 
 ## Demo
 
-Insert gif or link to demo
+Insert GIF or link to demo here.
 
 ## Features
 
@@ -19,43 +20,27 @@ Insert gif or link to demo
 
 ## Screenshots
 
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
+Insert application screenshots here.
 
 ## Run Locally
 
-Clone the project
+Clone the project:
 
-```bash
-  git clone https://link-to-project
-```
+  git clone https://github.com/kaditya125/Weather.io.git
 
-Go to the project directory
 
-```bash
-  cd my-project
-```
+  Go to the project directory:
 
-Open with VSCode
+  cd Weather.io
 
-```bash
-  code .
-```
-
-Open with live server
-
-```bash
-  npm run start
-```
-
+  Open with VSCode:
+    code .
+    Open with live server:
 
 ## Authors
 
-- [@codewithsadee](https://www.github.com/codewithsadee)
+- [@kaditya125](https://github.com/kaditya125)
 
-## License
 
-[MIT](https://choosealicense.com/licenses/mit/)
 
-## Support
 
-For support, Join my [Patreon Comunity](https://www.patreon.com/codewithsadee/membership) or Subscribe My [YouTube Channel](https://youtube.com/@codewithsadee).
