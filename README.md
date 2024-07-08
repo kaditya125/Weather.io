@@ -10,7 +10,8 @@ Weather-IO is a location search web application developed using modern JavaScrip
 
 ## Demo
 
-Insert GIF or link to demo here.
+Check out the live demo [here](https://weather-5izdebxed-aditya-kumars-projects-aac09ba2.vercel.app/#/current-location).
+
 
 ## Features
 
