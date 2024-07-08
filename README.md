@@ -24,7 +24,13 @@ Check out the live demo [here](https://weather-io-xi.vercel.app/#/current-locati
 
 ## Screenshots
 
-Insert application screenshots here.
+
+![Home Page](screenshots/homepage.png)
+*Caption: Description of the home page.*
+
+![Search Results](screenshots/page.png)
+*Caption: Description of the search results.*
+
 
 ## Run Locally
 
